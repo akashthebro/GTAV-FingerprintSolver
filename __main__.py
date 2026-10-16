@@ -17,21 +17,9 @@ def run():
         pos = [rect[0], rect[1]]
         size = [rect[2], rect[3]]
         print(rect)
-    else: # For Linux - install xdotool           
-        print("Focus GTAV window...") 
-        time.sleep(3)
-        res = str(subprocess.check_output(["xdotool", "getwindowfocus", "getwindowgeometry"]))
-        res = res.split("\\n")
-        pos = res[1]
-        pos = pos[pos.index(":")+2:]
-        pos = pos[:pos.index(" ")]
-        size = res[2]
-        size = size[size.index(":")+2:]
-        print("GTA at: " + pos + ", " + size)
-        pos = pos.split(",")
-        pos = [int(pos[0]), int(pos[1])]
-        size = size.split("x")
-        size = [int(size[0]), int(size[1])]
+    else: 
+        print("Only windows is supported")
+        return
 
     with mss.mss() as sct:
         w = int(float(size[0]) * 0.8)
